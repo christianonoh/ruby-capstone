@@ -15,7 +15,6 @@ describe Genre do
     end
   end
 
-
   describe '#add_item' do
     it 'adds an item to the items array' do
       genre.add_item('punk')
