@@ -40,6 +40,7 @@ class App
   end
 
   def quit
-    puts "Goodbye!"
+    puts 'Exiting the application...'
+    exit
   end
 end

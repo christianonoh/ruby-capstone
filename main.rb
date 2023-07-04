@@ -28,10 +28,13 @@ class Menu
   def run_menu_loop
     loop do
       choice = prompt_choice
+      puts "\n"
       handle_choice(choice)
       break if choice == 10
     end
   end
+  
+
   
 
   def prompt_choice
