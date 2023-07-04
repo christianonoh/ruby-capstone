@@ -7,7 +7,7 @@ class Music_album < Item
     end
 
     def can_be_archived?
-        if @archived == true
+        if (@archived == true && @on_spotify == true)
             return true
         else
             return false
