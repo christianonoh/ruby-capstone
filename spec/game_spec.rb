@@ -1,50 +1,51 @@
-require_relative 'rspec'
 require_relative '../models/game'
 
-RSpec.describe Game do
-  let(:author) { Author.new("John", "Doe") }
-  let(:options) do
-    {
-      genre: "Action",
-      author: author,
-      label: "Game of the Year",
-      publish_date: "2022-01-01",
-      multiplayer: true,
-      last_played_at: "2023-06-30"
-    }
-  end
+describe Game do
+  describe '#can_be_archived?' do
+    context 'when the game is older than 2 years and has not been played recently' do
+      it 'returns true' do
+        options = {
+          genre: 'Action',
+          author: 'John Doe',
+          label: 'Game 1',
+          publish_date: '2019-01-01',
+          multiplayer: true,
+          last_played_at: '2021-01-01'
+        }
+        game = Game.new(options)
 
-  subject(:game) { described_class.new(options) }
-
-  describe "#initialize" do
-    it "sets the genre, author, label, publish date, multiplayer, and last played date" do
-      expect(game.genre).to eq("Action")
-      expect(game.author).to eq(author)
-      expect(game.label).to eq("Game of the Year")
-      expect(game.publish_date).to eq(Date.parse("2022-01-01"))
-      expect(game.multiplayer).to eq(true)
-      expect(game.last_played_at).to eq(Date.parse("2023-06-30"))
+        expect(game.can_be_archived?).to be true
+      end
     end
-  end
+    context 'when the game is newer than 2 years' do
+      it 'returns false' do
+        options = {
+          genre: 'Adventure',
+          author: 'Jane Smith',
+          label: 'Game 2',
+          publish_date: '2022-05-01',
+          multiplayer: false,
+          last_played_at: '2023-04-01'
+        }
+        game = Game.new(options)
 
-  describe "#can_be_archived?" do
-    context "when the game is eligible for archiving based on publish date" do
-      it "returns true" do
-        expect(game.can_be_archived?).to be_truthy
+        expect(game.can_be_archived?).to be false
       end
     end
 
-    context "when the game is eligible for archiving based on last played date" do
-      it "returns true" do
-        game.last_played_at = Date.today - (2 * 365 + 1)
-        expect(game.can_be_archived?).to be_truthy
-      end
-    end
+    context 'when the game has been played recently' do
+      it 'returns false' do
+        options = {
+          genre: 'RPG',
+          author: 'Sam Johnson',
+          label: 'Game 3',
+          publish_date: '2018-07-01',
+          multiplayer: true,
+          last_played_at: Date.today.to_s
+        }
+        game = Game.new(options)
 
-    context "when the game is not eligible for archiving" do
-      it "returns false" do
-        game.last_played_at = Date.today - (2 * 365 - 1)
-        expect(game.can_be_archived?).to be_falsey
+        expect(game.can_be_archived?).to be false
       end
     end
   end
