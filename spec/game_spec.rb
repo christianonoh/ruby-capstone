@@ -1,4 +1,4 @@
-require_relative 'game'
+require_relative './models/game'
 
 RSpec.describe Game do
   let(:author) { Author.new("John", "Doe") }
