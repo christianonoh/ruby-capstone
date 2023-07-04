@@ -7,4 +7,15 @@ class Author
     @last_name = last_name
     @items = []
   end
+
+  def add_item(item)
+    if item.instance_of?(Item)
+      unless @items.include?(item)
+        @items << item
+        item.author = self
+      end
+    else
+      raise ArgumentError, 'Invalid item provided.'
+    end
+  end
 end
