@@ -1,16 +1,13 @@
-class Music_album < Item
-
+class MusicAlbum < Item
+    attr_accessor :on_spotify
+  
     def initialize(genre, author, label, publish_date, archived: false, on_spotify: false)
-        super(genre, author, label, publish_date, archived: false)
-        @on_spotify = on_spotify
-        @archived = archived
+      super(genre, author, label, publish_date, archived: archived)
+      @on_spotify = on_spotify
     end
-
+  
     def can_be_archived?
-        if (@archived == true && @on_spotify == true)
-            return true
-        else
-            return false
-        end
+      super && @on_spotify
     end
-end
+  end
+  
