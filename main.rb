@@ -29,12 +29,13 @@ class Menu
     loop do
       choice = prompt_choice
       handle_choice(choice)
-      break if choice == 7
+      break if choice == 10
     end
   end
+  
 
   def prompt_choice
-    print 'Enter your choice (1-7): '
+    print 'Enter your choice (1-10): '
     gets.chomp.to_i
   end
 
@@ -55,11 +56,11 @@ class Menu
     when 7
       @app.add_book
     when 8
-        @app.add_music_album
+      @app.add_music_album
     when 9
-        @app.add_game
+      @app.add_game
     when 10
-        @app.quit
+      @app.quit
     else
       invalid_choice
     end
