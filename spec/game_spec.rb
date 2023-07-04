@@ -1,3 +1,4 @@
+require_relative 'rspec'
 require_relative '../models/game'
 
 RSpec.describe Game do

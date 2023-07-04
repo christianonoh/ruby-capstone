@@ -1,3 +1,4 @@
+require_relative 'rspec'
 require_relative '../models/author'
 require_relative '../models/item'
 
