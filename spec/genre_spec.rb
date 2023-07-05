@@ -1,7 +1,9 @@
 require './models/genre'
+require './models/item'
 
 describe Genre do
   let(:genre) { Genre.new('Rock') }
+  let(:item) { Item.new(genre, 'John Doe', 'Album', '2023-01-01') }
 
   describe '#new' do
     it 'returns a new Genre object' do
@@ -16,9 +18,20 @@ describe Genre do
   end
 
   describe '#add_item' do
-    it 'adds an item to the items array' do
-      genre.add_item('punk')
-      expect(genre.items).to eq(['punk'])
+    context 'when adding an instance of Item' do
+      it 'adds the item to the items array and assigns the genre' do
+        genre.add_item(item)
+        expect(genre.items).to include(item)
+        expect(item.genre).to eq(genre)
+      end
+    end
+
+    context 'when adding an object that is not an instance of Item' do
+      it 'does not add the item to the items array' do
+        genre.add_item('punk')
+        expect(genre.items).to be_empty
+      end
     end
   end
+ 
 end
