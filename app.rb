@@ -3,7 +3,6 @@ require './managers/book_manager'
 require './managers/game_manager'
 
 class App
-
   def initialize
     @music_album_manager = MusicAlbumManager.new
     @book_manager = BookManager.new
@@ -11,12 +10,12 @@ class App
   end
 
   def list_all_books
-    #@book_manager.list_all_books
+    # @book_manager.list_all_books
     puts 'Listing all books'
   end
 
   def list_all_music_albums
-    #@music_album_manager.list_all_music_albums
+    # @music_album_manager.list_all_music_albums
     puts 'Listing all music albums'
   end
 
@@ -26,12 +25,12 @@ class App
   end
 
   def list_all_genres
-    #@genre_manager.list_all_genres
+    # @genre_manager.list_all_genres
     puts 'Listing all genres'
   end
 
   def list_all_labels
-    #@label_manager.list_all_labels
+    # @label_manager.list_all_labels
     puts 'Listing all labels'
   end
 
@@ -41,12 +40,12 @@ class App
   end
 
   def add_book
-    #@book_manager.add_book
+    # @book_manager.add_book
     puts 'Adding a book'
   end
 
   def add_music_album
-    #@music_album_manager.add_music_album
+    # @music_album_manager.add_music_album
     puts 'Adding a music album'
   end
 
@@ -56,7 +55,7 @@ class App
   end
 
   def add_genre
-    #@genre_manager.add_genre
+    # @genre_manager.add_genre
     puts 'Adding a genre'
   end
 

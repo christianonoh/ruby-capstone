@@ -9,23 +9,23 @@ class GameManager
 
   def initialize
     @games = []
-    @author = []
+    @authors = []
   end
 
   def list_all_games
     @games.each_with_index do |game, index|
       puts "#{index + 1}. Game #{index + 1}:"
       puts "Genre: #{game.genre.name}"
-      puts " Author: #{game.author.first_name} (#{game.author.last_name}"
+      puts " Author: #{game.author.first_name} #{game.author.last_name}"
       puts " Label: #{game.label.title}"
       puts " Last Played: #{game.last_played_at}"
     end
-    puts "-----------------------------------"
+    puts '-----------------------------------'
   end
 
   def list_all_authors
-    @author.each_with_index do |author, index|
-      puts "#{index + 1}. {author.name}"
+    @authors.each_with_index do |author, index|
+      puts "#{index + 1}. #{"#{author.first_name} #{author.last_name}"}"
     end
   end
 
@@ -37,7 +37,7 @@ class GameManager
     puts 'Enter game author last name:'
     last_name = gets.chomp
     puts 'Enter game label:'
-    label = gets.chomp
+    title = gets.chomp
     puts 'Enter the publish date (YYYY-MM-DD):'
     publish_date = gets.chomp
     puts 'Enter the date game was last played (YYYY-MM-DD):'
@@ -46,7 +46,7 @@ class GameManager
     multiplayer = gets.chomp
 
     options = {
-      genre: Genre.new(genre)
+      genre: Genre.new(genre),
       author: Author.new(name_author, last_name),
       label: Label.new(title, color: nil),
       publish_date: publish_date,
@@ -55,7 +55,7 @@ class GameManager
     }
 
     author_obj = options[:author]
-    @authors << author_obj unless @authors.include?(author_obj)
+    @authors << author_obj
     game = Game.new(options)
     @games << game
     puts 'Game added successfully!'
