@@ -8,7 +8,9 @@ class Genre
   end
 
   def add_item(item)
-    @items << item
+    return unless item.is_a?(Item) && !@items.include?(item)
+
     item.genre = self
+    @items << item
   end
 end
