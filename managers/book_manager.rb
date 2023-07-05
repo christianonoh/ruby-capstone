@@ -43,4 +43,17 @@ class BookManager
     book = Book.new(options)
     @books << book
   end
+
+  def list_all_books
+    @books.each_with_index do |book, index|
+      puts "#{index + 1}. Book #{index + 1}:"
+      puts "  Title: #{book.label.title}"
+      puts "  Author: #{book.author.first_name} #{book.author.last_name}"
+      puts "  Genre: #{book.genre.name}"
+      puts "  Published Date: #{book.publish_date}"
+      puts "  Publisher: #{book.publisher}"
+      puts "  Cover state: #{book.cover_state}"
+      puts "------------"
+    end
+  end
 end
