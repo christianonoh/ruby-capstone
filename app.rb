@@ -21,7 +21,7 @@ class App
   end
 
   def list_all_games
-    #@game_manager.list_all_games
+    @game_manager.list_all_games
     puts 'Listing all games'
   end
 
@@ -36,7 +36,7 @@ class App
   end
 
   def list_all_authors
-    #@author_manager.list_all_authors
+    @game_manager.list_all_authors
     puts 'Listing all authors'
   end
 
@@ -51,7 +51,7 @@ class App
   end
 
   def add_game
-    #@game_manager.add_game
+    @game_manager.add_game
     puts 'Adding a game'
   end
 
