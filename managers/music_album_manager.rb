@@ -1,0 +1,2 @@
+class MusicAlbumManager
+end
