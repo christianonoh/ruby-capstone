@@ -1,4 +1,6 @@
 require 'json'
+require_relative 'json_files'
+
 require './models/music_album'
 require './models/genre'
 require './models/author'
@@ -65,26 +67,20 @@ class MusicAlbumManager
     @music_albums << music_album
 
     puts 'Music album was added successfully!'
-    #write_to_json
+    JsonHandler.write_to_json(@music_albums, MusicAlbum)
   end
 
-  def write_to_json
-    File.open('music_albums.json', 'w') do |file|
-      file.write(JSON.pretty_generate(@music_albums.map(&:to_hash)))
-    end
+  
 
-    puts 'Music albums data written to music_albums.json successfully!'
-  end
-
-  def to_hash
-    {
-        id: @id,
-        genre: @genre.to_hash,
-        author: @author,
-        label: @label,
-        publish_date: @publish_date.to_s,
-        archived: @archived,
-        on_spotify: @on_spotify
-    }
-  end
+#   def to_hash
+#     {
+#         id: @id,
+#         genre: @genre.to_hash,
+#         author: @author,
+#         label: @label,
+#         publish_date: @publish_date.to_s,
+#         archived: @archived,
+#         on_spotify: @on_spotify
+#     }
+#   end
 end
