@@ -21,8 +21,7 @@ class Label
     {
       id: @id,
       title: @title,
-      color: @color,
-      items: @items.map(&:to_hash)
+      color: @color
     }
   end
 end

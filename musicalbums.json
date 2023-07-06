@@ -48,5 +48,30 @@
     "publish_date": "2020-02-21",
     "archived": null,
     "on_spotify": false
+  },
+  {
+    "id": 2984,
+    "genre": {
+      "id": 4417,
+      "name": "action"
+    },
+    "author": {
+      "id": 385,
+      "first_name": "author1",
+      "last_name": "last name"
+    },
+    "label": {
+      "id": 64408,
+      "title": "tom raider",
+      "color": {
+        "color": null
+      },
+      "items": [
+
+      ]
+    },
+    "publish_date": "2020-02-12",
+    "archived": null,
+    "on_spotify": true
   }
 ]
