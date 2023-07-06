@@ -16,10 +16,36 @@ module DataParser
         )
         music_album.instance_variable_set(:@id, item[:id]) unless item[:id].nil?
         music_album
-        # music_album.instance_variable_set(:@id, item[:id])
-        # music_album
+        
+    
       end
     end
+
+    #books
+    def parse_books(data)
+        data.map do |item|
+          genre = parse_genre(item[:genre])
+          author = parse_author(item[:author])
+          label = parse_label(item[:label])
+    
+          books = Book.new(
+            genre: genre,
+            author: author,
+            label: label,
+            publish_date: item[:publish_date],
+            publisher: item[:publisher],
+            cover_state: item[:cover_state]
+          )
+          books.instance_variable_set(:@id, item[:id]) unless item[:id].nil?
+          books
+          
+      
+        end
+      end
+
+    
+
+        
   
     def parse_genre(genre_data)
       genre = Genre.new(genre_data[:name])
@@ -34,9 +60,15 @@ module DataParser
     end
   
     def parse_label(label_data)
-      label = Label.new(label_data[:title], color: nil)
-      label.instance_variable_set(:@id, label_data[:id])
-      label
-    end
+        color = label_data[:color] && label_data[:color][:color]
+        label = Label.new(label_data[:title], color: color)
+        label.instance_variable_set(:@id, label_data[:id])
+        label
+      end
+    # def parse_label(label_data)
+    #   label = Label.new(label_data[:title], color: nil)
+    #   label.instance_variable_set(:@id, label_data[:id])
+    #   label
+    # end
   end
   
