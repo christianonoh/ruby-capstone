@@ -1,4 +1,5 @@
 require 'json'
+require './managers/utils'
 require './models/game'
 require './models/genre'
 require './models/author'
@@ -10,6 +11,7 @@ class GameManager
   def initialize
     @games = []
     @authors = []
+    @utils = Utils.new
   end
 
   def list_all_games
@@ -30,29 +32,17 @@ class GameManager
   end
 
   def add_game
-    puts 'Add genre of the game:'
-    genre = gets.chomp
-    puts 'Enter game author first name:'
-    name_author = gets.chomp
-    puts 'Enter game author last name:'
-    last_name = gets.chomp
-    puts 'Enter game label:'
-    title = gets.chomp
-    puts 'Enter the publish date (YYYY-MM-DD):'
-    publish_date = gets.chomp
-    puts 'Enter the date game was last played (YYYY-MM-DD):'
-    last_played_at = gets.chomp
-    puts 'Enter if multiplayer'
-    multiplayer = gets.chomp
+    title = @utils.prompt_user_input('Enter game title: ')
+    author_first_name = @utils.prompt_user_input('Enter first name of author: ')
+    author_last_name = @utils.prompt_user_input('Enter last name of author: ')
+    genre = @utils.prompt_user_input('Enter game genre: ')
+    publish_date = @utils.prompt_user_input('Enter the published date (YYYY-MM-DD): ')
+    color = nil
+    last_played_at = @utils.prompt_user_input('Enter last played date (YYYY-MM-DD):')
+    multiplayer = @utils.prompt_user_input('Enter if Multiplayer:')
 
-    options = {
-      genre: Genre.new(genre),
-      author: Author.new(name_author, last_name),
-      label: Label.new(title, color: nil),
-      publish_date: publish_date,
-      last_played_at: last_played_at,
-      multiplayer: multiplayer
-    }
+    general = @utils.build_options(title, author_first_name, author_last_name, genre, color)
+    options = { **general, publish_date: publish_date, last_played_at: last_played_at, multiplayer: multiplayer }
 
     author_obj = options[:author]
     @authors << author_obj

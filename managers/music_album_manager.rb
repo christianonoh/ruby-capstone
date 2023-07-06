@@ -7,7 +7,6 @@ require './models/author'
 require './models/label'
 
 class MusicAlbumManager
-
   def initialize
     @music_albums = []
     @genres = []
@@ -19,9 +18,9 @@ class MusicAlbumManager
       puts "  Genre: #{music_album.genre.name}"
       puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
       puts "  Label: #{music_album.label.title}"
-      #puts "  Published Date: #{music_album.publish_date}"
+      # puts "  Published Date: #{music_album.publish_date}"
       puts "  On Spotify: #{music_album.on_spotify}"
-      puts "------------"
+      puts '------------'
     end
   end
 
@@ -32,7 +31,6 @@ class MusicAlbumManager
   end
 
   def add_music_album
-
     puts 'Enter the name of author of the music album:'
     name_author = gets.chomp
 
@@ -44,14 +42,14 @@ class MusicAlbumManager
 
     puts 'Enter the genre of the music album:'
     genre = gets.chomp
-   
+
     puts 'Enter the published date of the music album (YYYY-MM-DD):'
     publish_date = gets.chomp
 
     puts 'Enter if it\'s on Spotify (y/n):'
     on_spotify_input = gets.chomp.downcase
 
-    on_spotify = on_spotify_input == 'y' ? true : false
+    on_spotify = on_spotify_input == 'y'
 
     options = {
       genre: Genre.new(genre),
@@ -63,12 +61,11 @@ class MusicAlbumManager
 
     genre_obj = options[:genre]
     @genres << genre_obj unless @genres.include?(genre_obj)
-   
+
     music_album = MusicAlbum.new(options)
     @music_albums << music_album
 
     puts 'Music album was added successfully!'
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
   end
-
 end

@@ -14,7 +14,6 @@ class App
   end
 
   def list_all_music_albums
-
     @music_album_manager.list_all_music_albums
     puts 'Listing all music albums'
   end
@@ -45,7 +44,6 @@ class App
   end
 
   def add_music_album
-
     @music_album_manager.add_music_album
     puts 'Adding a music album'
   end
