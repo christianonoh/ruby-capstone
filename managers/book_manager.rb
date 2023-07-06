@@ -7,12 +7,6 @@ class BookManager
     @books = []
     @labels = []
     @utils = Utils.new
-
-    label_obj = options[:label]
-    @labels << label_obj unless @labels.include?(label_obj)
-    puts 'Udoka by John Doe was added successfully!'
-    book = Book.new(options)
-    @books << book
   end
 
   def add_book
