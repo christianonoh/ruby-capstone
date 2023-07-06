@@ -14,9 +14,10 @@ module DataParser
           publish_date: item[:publish_date],
           on_spotify: item[:on_spotify]
         )
-  
-        music_album.instance_variable_set(:@id, item[:id])
+        music_album.instance_variable_set(:@id, item[:id]) unless item[:id].nil?
         music_album
+        # music_album.instance_variable_set(:@id, item[:id])
+        # music_album
       end
     end
   

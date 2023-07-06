@@ -24,8 +24,8 @@ class MusicAlbumManager
   def list_all_music_albums
     read_music_albums_from_json
     @music_albums.each_with_index do |music_album, index|
-      puts "#{index + 1}. Music Album #{index + 1} ID: #{music_album.id}"
-      puts "  Genre: #{music_album.genre.name} ID: #{music_album.genre.id}"
+      puts "#{index + 1}. Music Album #{index + 1} (ID: #{music_album.id}):"
+      puts "  Genre: #{music_album.genre.name}"
       puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
       puts "  Label: #{music_album.label.title}"
       puts "  On Spotify: #{music_album.on_spotify}"
@@ -87,43 +87,6 @@ class MusicAlbumManager
                       []
                     end
   end
-
-#   def parse_music_albums(data)
-#     data.map do |item|
-#       genre = parse_genre(item[:genre])
-#       author = parse_author(item[:author])
-#       label = parse_label(item[:label])
-
-#       music_album = MusicAlbum.new(
-#         genre: genre,
-#         author: author,
-#         label: label,
-#         publish_date: item[:publish_date],
-#         on_spotify: item[:on_spotify]
-#       )
-
-#       music_album.instance_variable_set(:@id, item[:id])
-#       music_album
-#     end
-#   end
-
-#   def parse_genre(genre_data)
-#     genre = Genre.new(genre_data[:name])
-#     genre.instance_variable_set(:@id, genre_data[:id])
-#     genre
-#   end
-
-#   def parse_author(author_data)
-#     author = Author.new(author_data[:first_name], author_data[:last_name])
-#     author.instance_variable_set(:@id, author_data[:id])
-#     author
-#   end
-
-#   def parse_label(label_data)
-#     label = Label.new(label_data[:title], color: nil)
-#     label.instance_variable_set(:@id, label_data[:id])
-#     label
-#   end
 
   def read_genres_from_json
     data = JsonHandler.read_from_json('./database/genres.json')
