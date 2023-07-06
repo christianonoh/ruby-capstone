@@ -43,6 +43,29 @@ module DataParser
         end
       end
 
+
+      #games
+      def parse_games(data)
+        data.map do |item|
+          genre = parse_genre(item[:genre])
+          author = parse_author(item[:author])
+          label = parse_label(item[:label])
+    
+          games = Game.new(
+            genre: genre,
+            author: author,
+            label: label,
+            publish_date: item[:publish_date],
+            last_played_at: item[:last_played_at],
+            multiplayer: item[:multiplayer]
+
+          )
+          games.instance_variable_set(:@id, item[:id]) unless item[:id].nil?
+          games
+          
+      
+        end
+      end
     
 
         
@@ -67,10 +90,5 @@ module DataParser
         label.instance_variable_set(:@id, label_data[:id])
         label
       end
-    # def parse_label(label_data)
-    #   label = Label.new(label_data[:title], color: nil)
-    #   label.instance_variable_set(:@id, label_data[:id])
-    #   label
-    # end
   end
   
