@@ -1,4 +1,6 @@
 require 'json'
+require_relative 'json_files'
+
 require './models/book'
 require './managers/utils'
 
@@ -27,6 +29,7 @@ class BookManager
     puts "#{title} by #{author_first_name} #{author_last_name} was added successfully!"
     book = Book.new(options)
     @books << book
+    JsonHandler.write_to_json(@books, Book)
   end
 
   def list_all_books

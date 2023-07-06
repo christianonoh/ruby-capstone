@@ -1,0 +1,24 @@
+[
+  {
+    "id": 688,
+    "genre": {
+      "id": 4690,
+      "name": "self help"
+    },
+    "author": {
+      "id": 720,
+      "first_name": "james",
+      "last_name": "clean"
+    },
+    "label": {
+      "id": 13011,
+      "title": "atomic habits",
+      "color": {
+        "color": "red"
+      }
+    },
+    "publish_date": "2020-02-21",
+    "publisher": "jules LTD",
+    "cover_state": "good"
+  }
+]
