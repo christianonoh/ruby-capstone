@@ -1,10 +1,14 @@
 require 'json'
+require_relative 'json_files'
+
 require './models/book'
 require './managers/utils'
 
 class BookManager
   def initialize
     @books = []
+    @authors = []
+    @genres = []
     @labels = []
     @utils = Utils.new
   end
@@ -25,8 +29,24 @@ class BookManager
     label_obj = options[:label]
     @labels << label_obj
     puts "#{title} by #{author_first_name} #{author_last_name} was added successfully!"
+
+    genre_obj = options[:genre]
+    @genres << genre_obj
+
+    author_obj = options[:author]
+    @authors << author_obj
+
     book = Book.new(options)
     @books << book
+    save_to_json
+  end
+
+  def save_to_json
+    JsonHandler.write_to_json(@genres, Genre)
+    JsonHandler.write_to_json(@authors, Author)
+    JsonHandler.write_to_json(@labels, Label)
+    JsonHandler.write_to_json(@books, Book)
+    puts 'Saved to JSON'
   end
 
   def list_all_books

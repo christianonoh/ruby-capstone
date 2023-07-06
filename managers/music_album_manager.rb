@@ -1,4 +1,5 @@
 require 'json'
+require './managers/utils'
 require_relative 'json_files'
 
 require './models/music_album'
@@ -10,6 +11,9 @@ class MusicAlbumManager
   def initialize
     @music_albums = []
     @genres = []
+    @authors = []
+    @labels = []
+    @utils = Utils.new
   end
 
   def list_all_music_albums
@@ -18,7 +22,6 @@ class MusicAlbumManager
       puts "  Genre: #{music_album.genre.name}"
       puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
       puts "  Label: #{music_album.label.title}"
-      # puts "  Published Date: #{music_album.publish_date}"
       puts "  On Spotify: #{music_album.on_spotify}"
       puts '------------'
     end
@@ -31,41 +34,40 @@ class MusicAlbumManager
   end
 
   def add_music_album
-    puts 'Enter the name of author of the music album:'
-    name_author = gets.chomp
+    title = @utils.prompt_user_input('Enter music album title: ')
+    author_first_name = @utils.prompt_user_input('Enter first name of author: ')
+    author_last_name = @utils.prompt_user_input('Enter last name of author: ')
+    genre = @utils.prompt_user_input('Enter music album genre: ')
+    publish_date = @utils.prompt_user_input('Enter the published date (YYYY-MM-DD): ')
+    color = nil
+    on_spotify_input = @utils.prompt_user_input('Enter if it\'s on Spotify (y/n):')
+    on_spotify = on_spotify_input.downcase == 'y'
 
-    puts 'Enter the last name of author of the music album:'
-    last_name_author = gets.chomp
-
-    puts 'Enter the title of the music album:'
-    title = gets.chomp
-
-    puts 'Enter the genre of the music album:'
-    genre = gets.chomp
-
-    puts 'Enter the published date of the music album (YYYY-MM-DD):'
-    publish_date = gets.chomp
-
-    puts 'Enter if it\'s on Spotify (y/n):'
-    on_spotify_input = gets.chomp.downcase
-
-    on_spotify = on_spotify_input == 'y'
-
-    options = {
-      genre: Genre.new(genre),
-      author: Author.new(name_author, last_name_author),
-      label: Label.new(title, color: nil),
-      publish_date: publish_date,
-      on_spotify: on_spotify
-    }
+    general = @utils.build_options(title, author_first_name, author_last_name, genre, color)
+    options = { **general, publish_date: publish_date, on_spotify: on_spotify }
 
     genre_obj = options[:genre]
     @genres << genre_obj unless @genres.include?(genre_obj)
+
+    author_obj = options[:author]
+    @authors << author_obj
+
+    label_obj = options[:label]
+    @labels << label_obj
 
     music_album = MusicAlbum.new(options)
     @music_albums << music_album
 
     puts 'Music album was added successfully!'
+
+    save_to_json
+  end
+
+  def save_to_json
+    JsonHandler.write_to_json(@genres, Genre)
+    JsonHandler.write_to_json(@authors, Author)
+    JsonHandler.write_to_json(@labels, Label)
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
+    puts 'Saved to JSON'
   end
 end

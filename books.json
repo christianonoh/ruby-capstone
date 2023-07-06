@@ -1,0 +1,46 @@
+[
+  {
+    "id": 688,
+    "genre": {
+      "id": 4690,
+      "name": "self help"
+    },
+    "author": {
+      "id": 720,
+      "first_name": "james",
+      "last_name": "clean"
+    },
+    "label": {
+      "id": 13011,
+      "title": "atomic habits",
+      "color": {
+        "color": "red"
+      }
+    },
+    "publish_date": "2020-02-21",
+    "publisher": "jules LTD",
+    "cover_state": "good"
+  },
+  {
+    "id": 5896,
+    "genre": {
+      "id": 7213,
+      "name": "classic"
+    },
+    "author": {
+      "id": 730,
+      "first_name": "harper",
+      "last_name": "lee"
+    },
+    "label": {
+      "id": 961979,
+      "title": "How to kill a mocking bird",
+      "color": {
+        "color": "green"
+      }
+    },
+    "publish_date": "1060-07-11",
+    "publisher": "Lippincott",
+    "cover_state": "good"
+  }
+]

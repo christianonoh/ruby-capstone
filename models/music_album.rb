@@ -20,7 +20,6 @@ class MusicAlbum < Item
       author: @author.to_hash,
       label: @label.to_hash,
       publish_date: @publish_date.to_s,
-      archived: @archived,
       on_spotify: @on_spotify
     }
   end

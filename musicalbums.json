@@ -48,5 +48,51 @@
     "publish_date": "2020-02-21",
     "archived": null,
     "on_spotify": false
+  },
+  {
+    "id": 2984,
+    "genre": {
+      "id": 4417,
+      "name": "action"
+    },
+    "author": {
+      "id": 385,
+      "first_name": "author1",
+      "last_name": "last name"
+    },
+    "label": {
+      "id": 64408,
+      "title": "tom raider",
+      "color": {
+        "color": null
+      },
+      "items": [
+
+      ]
+    },
+    "publish_date": "2020-02-12",
+    "archived": null,
+    "on_spotify": true
+  },
+  {
+    "id": 1357,
+    "genre": {
+      "id": 8966,
+      "name": "pop"
+    },
+    "author": {
+      "id": 805,
+      "first_name": "Michael",
+      "last_name": "Jackson"
+    },
+    "label": {
+      "id": 432245,
+      "title": "thriller",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "2020-02-13",
+    "on_spotify": true
   }
 ]
