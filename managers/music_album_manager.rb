@@ -11,6 +11,8 @@ class MusicAlbumManager
   def initialize
     @music_albums = []
     @genres = []
+    @authors = []
+    @labels = []
     @utils = Utils.new
   end
 
@@ -32,10 +34,10 @@ class MusicAlbumManager
   end
 
   def add_music_album
-    title = @utils.prompt_user_input('Enter game title: ')
+    title = @utils.prompt_user_input('Enter music album title: ')
     author_first_name = @utils.prompt_user_input('Enter first name of author: ')
     author_last_name = @utils.prompt_user_input('Enter last name of author: ')
-    genre = @utils.prompt_user_input('Enter game genre: ')
+    genre = @utils.prompt_user_input('Enter music album genre: ')
     publish_date = @utils.prompt_user_input('Enter the published date (YYYY-MM-DD): ')
     color = nil
     on_spotify_input = @utils.prompt_user_input('Enter if it\'s on Spotify (y/n):')
@@ -47,10 +49,25 @@ class MusicAlbumManager
     genre_obj = options[:genre]
     @genres << genre_obj unless @genres.include?(genre_obj)
 
+    author_obj = options[:author]
+    @authors << author_obj
+
+    label_obj = options[:label]
+    @labels << label_obj
+
     music_album = MusicAlbum.new(options)
     @music_albums << music_album
 
     puts 'Music album was added successfully!'
+
+    save_to_json
+  end
+
+  def save_to_json
+    JsonHandler.write_to_json(@genres, Genre)
+    JsonHandler.write_to_json(@authors, Author)
+    JsonHandler.write_to_json(@labels, Label)
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
+    puts 'Saved to JSON'
   end
 end

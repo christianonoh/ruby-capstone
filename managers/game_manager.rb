@@ -13,6 +13,8 @@ class GameManager
   def initialize
     @games = []
     @authors = []
+    @labels = []
+    @genres = []
     @utils = Utils.new
   end
 
@@ -48,9 +50,26 @@ class GameManager
 
     author_obj = options[:author]
     @authors << author_obj
+    
+    genre_obj = options[:genre]
+    @genres << genre_obj
+
+    label_obj = options[:label]
+    @labels << label_obj
+    
     game = Game.new(options)
     @games << game
     puts 'Game added successfully!'
-    JsonHandler.write_to_json(@games, Game)
+    save_to_json
   end
+
+  def save_to_json
+    JsonHandler.write_to_json(@genres, Genre)
+    JsonHandler.write_to_json(@authors, Author)
+    JsonHandler.write_to_json(@labels, Label)
+    JsonHandler.write_to_json(@games, Game)
+    puts 'Saved to JSON'
+  end
+
+
 end
