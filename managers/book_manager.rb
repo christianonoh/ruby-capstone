@@ -14,6 +14,7 @@ class BookManager
     @labels = []
     @utils = Utils.new
     read_music_albums_from_json
+    read_labels_from_json
   end
 
   def add_book
@@ -68,6 +69,8 @@ class BookManager
   end
 
   def list_all_labels
+    read_labels_from_json
+    
     @labels.each_with_index do |label, index|
       puts "#{index + 1}. #{label.title}"
     end
@@ -80,6 +83,19 @@ class BookManager
                     else
              []
         end
+  end
+
+  def read_labels_from_json
+    data = JsonHandler.read_from_json('./database/labels.json')
+    @labels = if data.is_a?(Array)
+                data.map do |item|
+                  label = Label.new(item[:title], item[:color])
+                  label.instance_variable_set(:@id, item[:id])
+                  label
+                end
+              else
+                []
+              end
   end
 
   private
