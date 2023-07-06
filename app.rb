@@ -10,8 +10,7 @@ class App
   end
 
   def list_all_books
-    # @book_manager.list_all_books
-    puts 'Listing all books'
+    @book_manager.list_all_books
   end
 
   def list_all_music_albums
@@ -30,7 +29,7 @@ class App
   end
 
   def list_all_labels
-    # @label_manager.list_all_labels
+    @book_manager.list_all_labels
     puts 'Listing all labels'
   end
 
@@ -40,7 +39,7 @@ class App
   end
 
   def add_book
-    # @book_manager.add_book
+    @book_manager.add_book
     puts 'Adding a book'
   end
 
