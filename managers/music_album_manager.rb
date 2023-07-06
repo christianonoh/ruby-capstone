@@ -14,9 +14,12 @@ class MusicAlbumManager
     @authors = []
     @labels = []
     @utils = Utils.new
+    read_music_albums_from_json
+    read_genres_from_json
   end
 
   def list_all_music_albums
+    read_music_albums_from_json
     @music_albums.each_with_index do |music_album, index|
       puts "#{index + 1}. Music Album #{index + 1}:"
       puts "  Genre: #{music_album.genre.name}"
@@ -28,6 +31,7 @@ class MusicAlbumManager
   end
 
   def list_all_genres
+    read_genres_from_json
     @genres.each_with_index do |genre, index|
       puts "#{index + 1}. #{genre.name}"
     end
@@ -70,4 +74,48 @@ class MusicAlbumManager
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
     puts 'Saved to JSON'
   end
+
+
+  def read_music_albums_from_json
+    data = JsonHandler.read_from_json('./database/MusicAlbums.json')
+    if data.is_a?(Array)
+      @music_albums = data.map do |item|
+        genre = Genre.new(item[:genre][:name])
+        genre.instance_variable_set(:@id, item[:genre][:id])
+        author = Author.new(item[:author][:first_name], item[:author][:last_name])
+        author.instance_variable_set(:@id, item[:author][:id])
+        label = Label.new(item[:label][:title], color: nil)
+        label.instance_variable_set(:@id, item[:label][:id])
+        
+        music_album = MusicAlbum.new(
+            genre: genre, 
+            author: author, 
+            label: label, 
+            publish_date: item[:publish_date],
+            on_spotify: item[:on_spotify])
+
+        music_album.instance_variable_set(:@id, item[:id])
+        music_album
+      end
+    else
+      @music_albums = []
+    end
+
+
+    def read_genres_from_json
+        data = JsonHandler.read_from_json('./database/genres.json')
+        if data.is_a?(Array)
+            @genres = data.map do |item|
+            genre = Genre.new(item[:name])
+            genre.instance_variable_set(:@id, item[:id])
+            genre
+            end
+        else
+            @genres = []
+        end
+        end
+
+  end
+
+
 end
