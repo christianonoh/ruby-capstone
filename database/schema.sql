@@ -1,7 +1,6 @@
 
 /* Create Database */
 
-
 /* Create Table for Book and label & Join table */
 
 
