@@ -29,7 +29,7 @@ class MusicAlbumManager
       puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
       puts "  Label: #{music_album.label.title}"
       puts "  On Spotify: #{music_album.on_spotify}"
-      puts '------------'
+      puts '-------------------'
     end
   end
 

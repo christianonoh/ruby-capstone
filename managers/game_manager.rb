@@ -1,6 +1,7 @@
 require 'json'
 require './managers/utils'
 require_relative 'json_files'
+require_relative 'data_parser'
 
 require './models/game'
 require './models/genre'
@@ -8,6 +9,7 @@ require './models/author'
 require './models/label'
 
 class GameManager
+    include DataParser
   attr_accessor :games
 
   def initialize
@@ -16,9 +18,13 @@ class GameManager
     @labels = []
     @genres = []
     @utils = Utils.new
+    read_games_from_json
   end
 
   def list_all_games
+
+    read_games_from_json
+
     @games.each_with_index do |game, index|
       puts "#{index + 1}. Game #{index + 1}:"
       puts "Genre: #{game.genre.name}"
@@ -26,7 +32,7 @@ class GameManager
       puts " Label: #{game.label.title}"
       puts " Last Played: #{game.last_played_at}"
     end
-    puts '-----------------------------------'
+    puts '-------------------'
   end
 
   def list_all_authors
@@ -70,4 +76,14 @@ class GameManager
     JsonHandler.write_to_json(@games, Game)
     puts 'Saved to JSON'
   end
+
+  def read_games_from_json
+    data = JsonHandler.read_from_json('./database/games.json')
+    @games = if data.is_a?(Array)
+        parse_games(data)
+                    else
+                      []
+                    end
+  end
+
 end

@@ -64,13 +64,13 @@ class BookManager
       puts "  Published Date: #{book.publish_date}"
       puts "  Publisher: #{book.publisher}"
       puts "  Cover state: #{book.cover_state}"
-      puts '------------'
+      puts '-------------------'
     end
   end
 
   def list_all_labels
     read_labels_from_json
-    
+
     @labels.each_with_index do |label, index|
       puts "#{index + 1}. #{label.title}"
     end
