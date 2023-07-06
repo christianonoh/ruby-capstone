@@ -7,6 +7,7 @@ require './models/author'
 require './models/label'
 
 class MusicAlbumManager
+
   def initialize
     @music_albums = []
     @genres = []
@@ -70,17 +71,4 @@ class MusicAlbumManager
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
   end
 
-  
-
-#   def to_hash
-#     {
-#         id: @id,
-#         genre: @genre.to_hash,
-#         author: @author,
-#         label: @label,
-#         publish_date: @publish_date.to_s,
-#         archived: @archived,
-#         on_spotify: @on_spotify
-#     }
-#   end
 end
