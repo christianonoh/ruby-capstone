@@ -24,4 +24,10 @@ CREATE TABLE Game(
   genre_id INTEGER REFERENCES genre(id)
 )
 
+-- CREATE TABLE Author_Label_Genre(
+--   author_id INTEGER REFERENCES author(id),
+--   label_id INTEGER REFERENCES label(id),
+--   genre_id INTEGER REFERENCES genre(id)
+-- )
+
 /* Create Table for Music and Genre & Join table */
