@@ -46,19 +46,21 @@ module DataParser
     
 
         
-  
+    #genre
     def parse_genre(genre_data)
       genre = Genre.new(genre_data[:name])
       genre.instance_variable_set(:@id, genre_data[:id])
       genre
     end
   
+    #author
     def parse_author(author_data)
       author = Author.new(author_data[:first_name], author_data[:last_name])
       author.instance_variable_set(:@id, author_data[:id])
       author
     end
   
+    #label
     def parse_label(label_data)
         color = label_data[:color] && label_data[:color][:color]
         label = Label.new(label_data[:title], color: color)

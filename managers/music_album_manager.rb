@@ -78,7 +78,7 @@ class MusicAlbumManager
     puts 'Saved to JSON'
   end
 
- # reading from json
+ # reading from album music json
   def read_music_albums_from_json
     data = JsonHandler.read_from_json('./database/MusicAlbums.json')
     @music_albums = if data.is_a?(Array)
@@ -88,6 +88,7 @@ class MusicAlbumManager
                     end
   end
 
+  # reading from json genres
   def read_genres_from_json
     data = JsonHandler.read_from_json('./database/genres.json')
     @genres = if data.is_a?(Array)
