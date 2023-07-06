@@ -9,7 +9,7 @@ require './models/author'
 require './models/label'
 
 class GameManager
-    include DataParser
+  include DataParser
   attr_accessor :games
 
   def initialize
@@ -23,7 +23,6 @@ class GameManager
   end
 
   def list_all_games
-
     read_games_from_json
 
     @games.each_with_index do |game, index|
@@ -37,7 +36,6 @@ class GameManager
   end
 
   def list_all_authors
-
     read_authors_from_json
 
     @authors.each_with_index do |author, index|
@@ -84,23 +82,22 @@ class GameManager
   def read_games_from_json
     data = JsonHandler.read_from_json('./database/games.json')
     @games = if data.is_a?(Array)
-        parse_games(data)
-                    else
-                      []
-                    end
+               parse_games(data)
+             else
+               []
+             end
   end
 
   def read_authors_from_json
     data = JsonHandler.read_from_json('./database/authors.json')
     @authors = if data.is_a?(Array)
-                data.map do |item|
-                  author = Author.new(item[:first_name], item[:last_name])
-                  author.instance_variable_set(:@id, item[:id])
-                  author
-                end
-              else
-                []
-              end
+                 data.map do |item|
+                   author = Author.new(item[:first_name], item[:last_name])
+                   author.instance_variable_set(:@id, item[:id])
+                   author
+                 end
+               else
+                 []
+               end
   end
-
 end

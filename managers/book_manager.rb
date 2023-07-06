@@ -6,7 +6,7 @@ require './models/book'
 require './managers/utils'
 
 class BookManager
-    include DataParser
+  include DataParser
   def initialize
     @books = []
     @authors = []
@@ -79,10 +79,10 @@ class BookManager
   def read_music_albums_from_json
     data = JsonHandler.read_from_json('./database/books.json')
     @books = if data.is_a?(Array)
-                    parse_books(data)
-                    else
-             []
-        end
+               parse_books(data)
+             else
+               []
+             end
   end
 
   def read_labels_from_json

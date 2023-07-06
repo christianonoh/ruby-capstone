@@ -9,7 +9,7 @@ require './models/author'
 require './models/label'
 
 class MusicAlbumManager
-    include DataParser
+  include DataParser
 
   def initialize
     @music_albums = []
@@ -78,7 +78,7 @@ class MusicAlbumManager
     puts 'Saved to JSON'
   end
 
- # reading from album music json
+  # reading from album music json
   def read_music_albums_from_json
     data = JsonHandler.read_from_json('./database/MusicAlbums.json')
     @music_albums = if data.is_a?(Array)
@@ -101,6 +101,4 @@ class MusicAlbumManager
                 []
               end
   end
-
- 
 end
