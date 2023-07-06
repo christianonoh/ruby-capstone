@@ -50,13 +50,13 @@ class GameManager
 
     author_obj = options[:author]
     @authors << author_obj
-    
+
     genre_obj = options[:genre]
     @genres << genre_obj
 
     label_obj = options[:label]
     @labels << label_obj
-    
+
     game = Game.new(options)
     @games << game
     puts 'Game added successfully!'
@@ -70,6 +70,4 @@ class GameManager
     JsonHandler.write_to_json(@games, Game)
     puts 'Saved to JSON'
   end
-
-
 end
