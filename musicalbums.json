@@ -1,0 +1,52 @@
+[
+  {
+    "id": 8693,
+    "genre": {
+      "id": 9005,
+      "name": "kdjkdjjd"
+    },
+    "author": {
+      "id": 908,
+      "first_name": "soeee",
+      "last_name": "dsasass"
+    },
+    "label": {
+      "id": 202485,
+      "title": "dddd",
+      "color": {
+        "color": null
+      },
+      "items": [
+
+      ]
+    },
+    "publish_date": "2020-02-22",
+    "archived": null,
+    "on_spotify": true
+  },
+  {
+    "id": 8985,
+    "genre": {
+      "id": 5681,
+      "name": "kwkkw"
+    },
+    "author": {
+      "id": 633,
+      "first_name": "some",
+      "last_name": "dddd"
+    },
+    "label": {
+      "id": 226572,
+      "title": "jjj",
+      "color": {
+        "color": null
+      },
+      "items": [
+
+      ]
+    },
+    "publish_date": "2020-02-21",
+    "archived": null,
+    "on_spotify": false
+  }
+]
