@@ -19,6 +19,7 @@ class GameManager
     @genres = []
     @utils = Utils.new
     read_games_from_json
+    read_authors_from_json
   end
 
   def list_all_games
@@ -26,8 +27,8 @@ class GameManager
     read_games_from_json
 
     @games.each_with_index do |game, index|
-      puts "#{index + 1}. Game #{index + 1}:"
-      puts "Genre: #{game.genre.name}"
+      puts "#{index + 1}. Game #{index + 1} (ID: #{game.id}):"
+      puts " Genre: #{game.genre.name}"
       puts " Author: #{game.author.first_name} #{game.author.last_name}"
       puts " Label: #{game.label.title}"
       puts " Last Played: #{game.last_played_at}"
@@ -36,6 +37,9 @@ class GameManager
   end
 
   def list_all_authors
+
+    read_authors_from_json
+
     @authors.each_with_index do |author, index|
       puts "#{index + 1}. #{"#{author.first_name} #{author.last_name}"}"
     end
@@ -84,6 +88,19 @@ class GameManager
                     else
                       []
                     end
+  end
+
+  def read_authors_from_json
+    data = JsonHandler.read_from_json('./database/authors.json')
+    @authors = if data.is_a?(Array)
+                data.map do |item|
+                  author = Author.new(item[:first_name], item[:last_name])
+                  author.instance_variable_set(:@id, item[:id])
+                  author
+                end
+              else
+                []
+              end
   end
 
 end
