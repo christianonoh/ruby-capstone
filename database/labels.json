@@ -12,5 +12,12 @@
     "color": {
       "color": "green"
     }
+  },
+  {
+    "id": 98599,
+    "title": "the dark side of the album",
+    "color": {
+      "color": null
+    }
   }
 ]
