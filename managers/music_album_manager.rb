@@ -1,6 +1,7 @@
 require 'json'
 require './managers/utils'
 require_relative 'json_files'
+require_relative 'data_parser'
 
 require './models/music_album'
 require './models/genre'
@@ -8,6 +9,8 @@ require './models/author'
 require './models/label'
 
 class MusicAlbumManager
+    include DataParser
+
   def initialize
     @music_albums = []
     @genres = []
@@ -21,8 +24,8 @@ class MusicAlbumManager
   def list_all_music_albums
     read_music_albums_from_json
     @music_albums.each_with_index do |music_album, index|
-      puts "#{index + 1}. Music Album #{index + 1}:"
-      puts "  Genre: #{music_album.genre.name}"
+      puts "#{index + 1}. Music Album #{index + 1} ID: #{music_album.id}"
+      puts "  Genre: #{music_album.genre.name} ID: #{music_album.genre.id}"
       puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
       puts "  Label: #{music_album.label.title}"
       puts "  On Spotify: #{music_album.on_spotify}"
@@ -75,47 +78,63 @@ class MusicAlbumManager
     puts 'Saved to JSON'
   end
 
-
+ # reading from json
   def read_music_albums_from_json
     data = JsonHandler.read_from_json('./database/MusicAlbums.json')
-    if data.is_a?(Array)
-      @music_albums = data.map do |item|
-        genre = Genre.new(item[:genre][:name])
-        genre.instance_variable_set(:@id, item[:genre][:id])
-        author = Author.new(item[:author][:first_name], item[:author][:last_name])
-        author.instance_variable_set(:@id, item[:author][:id])
-        label = Label.new(item[:label][:title], color: nil)
-        label.instance_variable_set(:@id, item[:label][:id])
-        
-        music_album = MusicAlbum.new(
-            genre: genre, 
-            author: author, 
-            label: label, 
-            publish_date: item[:publish_date],
-            on_spotify: item[:on_spotify])
-
-        music_album.instance_variable_set(:@id, item[:id])
-        music_album
-      end
-    else
-      @music_albums = []
-    end
-
-
-    def read_genres_from_json
-        data = JsonHandler.read_from_json('./database/genres.json')
-        if data.is_a?(Array)
-            @genres = data.map do |item|
-            genre = Genre.new(item[:name])
-            genre.instance_variable_set(:@id, item[:id])
-            genre
-            end
-        else
-            @genres = []
-        end
-        end
-
+    @music_albums = if data.is_a?(Array)
+                      parse_music_albums(data)
+                    else
+                      []
+                    end
   end
 
+#   def parse_music_albums(data)
+#     data.map do |item|
+#       genre = parse_genre(item[:genre])
+#       author = parse_author(item[:author])
+#       label = parse_label(item[:label])
 
+#       music_album = MusicAlbum.new(
+#         genre: genre,
+#         author: author,
+#         label: label,
+#         publish_date: item[:publish_date],
+#         on_spotify: item[:on_spotify]
+#       )
+
+#       music_album.instance_variable_set(:@id, item[:id])
+#       music_album
+#     end
+#   end
+
+#   def parse_genre(genre_data)
+#     genre = Genre.new(genre_data[:name])
+#     genre.instance_variable_set(:@id, genre_data[:id])
+#     genre
+#   end
+
+#   def parse_author(author_data)
+#     author = Author.new(author_data[:first_name], author_data[:last_name])
+#     author.instance_variable_set(:@id, author_data[:id])
+#     author
+#   end
+
+#   def parse_label(label_data)
+#     label = Label.new(label_data[:title], color: nil)
+#     label.instance_variable_set(:@id, label_data[:id])
+#     label
+#   end
+
+  def read_genres_from_json
+    data = JsonHandler.read_from_json('./database/genres.json')
+    @genres = if data.is_a?(Array)
+                data.map do |item|
+                  genre = Genre.new(item[:name])
+                  genre.instance_variable_set(:@id, item[:id])
+                  genre
+                end
+              else
+                []
+              end
+  end
 end
