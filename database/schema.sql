@@ -4,6 +4,11 @@ CREATE TABLE labels (
   color VARCHAR(255)
 );
 
+CREATE TABLE genres (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255)
+);
+
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
   genre_id INT REFERENCES genres(id),
@@ -11,6 +16,11 @@ CREATE TABLE items (
   label_id INT REFERENCES labels(id),
   publish_date DATE,
   archived BOOLEAN
+);
+
+CREATE TABLE music_albums (
+  id INT PRIMARY KEY REFERENCES items(id),
+  on_spotify BOOLEAN
 );
 
 CREATE TABLE books (
