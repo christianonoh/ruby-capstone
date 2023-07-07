@@ -1,11 +1,21 @@
+CREATE TABLE labels (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255),
+  color VARCHAR(255)
+);
 
-/* Create Database */
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY,
+  genre_id INT REFERENCES genres(id),
+  author_id INT REFERENCES authors(id),
+  label_id INT REFERENCES labels(id),
+  publish_date DATE,
+  archived BOOLEAN
+);
 
-
-/* Create Table for Book and label & Join table */
-
-
-/* Create Table for Game and Author & Join table */
-
-
-/* Create Table for Music and Genre & Join table */
+CREATE TABLE books (
+  id INT PRIMARY KEY REFERENCES items(id),
+  title VARCHAR(255),
+  publisher VARCHAR(255),
+  cover_state VARCHAR(255)
+);
