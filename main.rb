@@ -1,81 +1,58 @@
 require_relative 'app'
 
-@app = App.new
+def display_menu
+  puts '-------------------'
+  puts 'My Catalogue App'
+  puts '-------------------'
+  puts 'Welcome to the App Please select an option:'
+  puts '1. List all Books'
+  puts '2. List all Music Albums'
+  puts '3. List all Games'
+  puts '4. List all Genres '
+  puts '5. List all Labels'
+  puts '6. List all Authors'
+  puts '7. Add a Book'
+  puts '8. Add a Music Album'
+  puts '9. Add a Game'
+  puts '0. Quit'
+  puts '-------------------'
+  print 'Enter your choice: '
+end
 
-class Menu
-  def initialize(app)
-    @app = app
+def process_choice(choice, app)
+  options = {
+    1 => :list_all_books,
+    2 => :list_all_music_albums,
+    3 => :list_all_games,
+    4 => :list_all_genres,
+    5 => :list_all_labels,
+    6 => :list_all_authors,
+    7 => :add_book,
+    8 => :add_music_album,
+    9 => :add_game,
+    0 => :quit
+  }
+
+  action = options[choice]
+  if action
+    app.send(action)
+  else
+    puts 'Invalid choice. Please try again.'
   end
-
-  def display_menu
-   
-    puts 'Welcome to the App Please select an option:'
-    puts '1. List all Books'
-    puts '2. List all Music Albums'
-    puts '3. List all Games'
-    puts '4. List all Genres '
-    puts '5. List all Labels'
-    puts '6. List all Authors'
-    puts '7. Add a Book'
-    puts '8. Add a Music Album'
-    puts '9. Add a Game'
-    puts '10. Quit'
-    run_menu_loop
-  end
-
-  private
-
-  def run_menu_loop
-    loop do
-      choice = prompt_choice
-      handle_choice(choice)
-      break if choice == 7
-    end
-  end
-
-  def prompt_choice
-    print 'Enter your choice (1-7): '
-    gets.chomp.to_i
-  end
-
-  def handle_choice(choice)
-    case choice
-    when 1
-      @app.list_all_books
-    when 2
-      @app.list_all_music_albums
-    when 3
-      @app.list_all_games
-    when 4
-      @app.list_all_genres
-    when 5
-      @app.list_all_labels
-    when 6
-      @app.list_all_authors
-    when 7
-      @app.add_book
-    when 8
-        @app.add_music_album
-    when 9
-        @app.add_game
-    when 10
-        @app.quit
-    else
-      invalid_choice
-    end
-    puts "\n"
-    display_menu
-  end
-
-  def invalid_choice
-    puts 'Invalid choice!'
-  end
-
+  !choice.zero?
 end
 
 def main
-  menu = Menu.new(@app)
-  menu.display_menu
+  app = App.new
+
+  loop do
+    display_menu
+    choice = gets.chomp.to_i
+
+    break unless process_choice(choice, app)
+
+    puts "\n"
+  end
 end
 
 main

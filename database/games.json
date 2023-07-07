@@ -1,0 +1,65 @@
+[
+  {
+    "genre": {
+      "id": 4030,
+      "name": "action"
+    },
+    "author": {
+      "id": 743,
+      "first_name": "david",
+      "last_name": "hills"
+    },
+    "label": {
+      "id": 299589,
+      "title": "minecraft",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "2020-02-12",
+    "multiplayer": "yes",
+    "last_played_at": "2020-04-13"
+  },
+  {
+    "genre": {
+      "id": 4030,
+      "name": "action"
+    },
+    "author": {
+      "id": 743,
+      "first_name": "david",
+      "last_name": "hills"
+    },
+    "label": {
+      "id": 299589,
+      "title": "minecraft",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "2020-02-12",
+    "multiplayer": "yes",
+    "last_played_at": "2020-04-13"
+  },
+  {
+    "genre": {
+      "id": 2940,
+      "name": "horror"
+    },
+    "author": {
+      "id": 588,
+      "first_name": "Jacob",
+      "last_name": "Minkoff"
+    },
+    "label": {
+      "id": 506151,
+      "title": "The last of us",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "2006-03-21",
+    "multiplayer": "yes",
+    "last_played_at": "2023-02-21"
+  }
+]
