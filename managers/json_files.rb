@@ -2,7 +2,7 @@ require 'json'
 
 class JsonHandler
   def self.write_to_json(data, class_type)
-    file_name = "#{class_type.to_s.downcase}s.json"
+    file_name = "./database/#{class_type.to_s.downcase}s.json"
     existing_data = read_from_json(file_name) || []
     updated_data = existing_data + data.map(&:to_hash)
 
