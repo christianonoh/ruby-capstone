@@ -25,10 +25,10 @@ class MusicAlbumManager
     read_music_albums_from_json
     @music_albums.each_with_index do |music_album, index|
       puts "#{index + 1}. Music Album #{index + 1} (ID: #{music_album.id}):"
-      puts "  Genre: #{music_album.genre.name}"
-      puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
-      puts "  Label: #{music_album.label.title}"
-      puts "  On Spotify: #{music_album.on_spotify}"
+      puts "   Genre: #{music_album.genre.name}"
+      puts "   Author: #{music_album.author.first_name} #{music_album.author.last_name}"
+      puts "   Label: #{music_album.label.title}"
+      puts "   On Spotify: #{music_album.on_spotify}"
       puts '-------------------'
     end
   end
@@ -75,7 +75,6 @@ class MusicAlbumManager
     JsonHandler.write_to_json(@authors, Author)
     JsonHandler.write_to_json(@labels, Label)
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
-    puts 'Saved to JSON'
   end
 
   # reading from album music json

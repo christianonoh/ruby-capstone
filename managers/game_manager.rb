@@ -27,12 +27,12 @@ class GameManager
 
     @games.each_with_index do |game, index|
       puts "#{index + 1}. Game #{index + 1} (ID: #{game.id}):"
-      puts " Genre: #{game.genre.name}"
-      puts " Author: #{game.author.first_name} #{game.author.last_name}"
-      puts " Label: #{game.label.title}"
-      puts " Last Played: #{game.last_played_at}"
+      puts "   Genre: #{game.genre.name}"
+      puts "   Author: #{game.author.first_name} #{game.author.last_name}"
+      puts "   Label: #{game.label.title}"
+      puts "   Last Played: #{game.last_played_at}"
+      puts '-------------------'
     end
-    puts '-------------------'
   end
 
   def list_all_authors
@@ -76,7 +76,6 @@ class GameManager
     JsonHandler.write_to_json(@authors, Author)
     JsonHandler.write_to_json(@labels, Label)
     JsonHandler.write_to_json(@games, Game)
-    puts 'Saved to JSON'
   end
 
   def read_games_from_json

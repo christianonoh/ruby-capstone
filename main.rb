@@ -2,7 +2,7 @@ require_relative 'app'
 
 def display_menu
   puts '-------------------'
-  puts 'Console App Options'
+  puts 'My Catalogue App'
   puts '-------------------'
   puts 'Welcome to the App Please select an option:'
   puts '1. List all Books'
@@ -14,7 +14,7 @@ def display_menu
   puts '7. Add a Book'
   puts '8. Add a Music Album'
   puts '9. Add a Game'
-  puts '10. Quit'
+  puts '0. Quit'
   puts '-------------------'
   print 'Enter your choice: '
 end

@@ -10,51 +10,48 @@ class App
   end
 
   def list_all_books
+    puts 'Listing all Books...'
     @book_manager.list_all_books
   end
 
   def list_all_music_albums
-    @music_album_manager.list_all_music_albums
     puts 'Listing all music albums'
+    @music_album_manager.list_all_music_albums
   end
 
   def list_all_games
-    @game_manager.list_all_games
     puts 'Listing all games'
+    @game_manager.list_all_games
   end
 
   def list_all_genres
-    @music_album_manager.list_all_genres
     puts 'Listing all genres'
+    @music_album_manager.list_all_genres
   end
 
   def list_all_labels
-    @book_manager.list_all_labels
     puts 'Listing all Title from labels'
+    @book_manager.list_all_labels
   end
 
   def list_all_authors
-    @game_manager.list_all_authors
     puts 'Listing all authors'
+    @game_manager.list_all_authors
   end
 
   def add_book
+    puts 'Add a book'
     @book_manager.add_book
-    puts 'Adding a book'
   end
 
   def add_music_album
+    puts 'Add a music album'
     @music_album_manager.add_music_album
-    puts 'Adding a music album'
   end
 
   def add_game
+    puts 'Add a game'
     @game_manager.add_game
-    puts 'Adding a game'
-  end
-
-  def add_genre
-    puts 'Adding a genre'
   end
 
   def quit

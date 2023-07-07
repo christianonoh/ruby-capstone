@@ -50,7 +50,6 @@ class BookManager
     JsonHandler.write_to_json(@authors, Author)
     JsonHandler.write_to_json(@labels, Label)
     JsonHandler.write_to_json(@books, Book)
-    puts 'Saved to JSON'
   end
 
   def list_all_books
@@ -58,12 +57,12 @@ class BookManager
 
     @books.each_with_index do |book, index|
       puts "#{index + 1}. Book #{index + 1}, (ID: #{book.id}):"
-      puts "  Title: #{book.label.title}"
-      puts "  Author: #{book.author.first_name} #{book.author.last_name}"
-      puts "  Genre: #{book.genre.name}"
-      puts "  Published Date: #{book.publish_date}"
-      puts "  Publisher: #{book.publisher}"
-      puts "  Cover state: #{book.cover_state}"
+      puts "   Title: #{book.label.title}"
+      puts "   Author: #{book.author.first_name} #{book.author.last_name}"
+      puts "   Genre: #{book.genre.name}"
+      puts "   Published Date: #{book.publish_date}"
+      puts "   Publisher: #{book.publisher}"
+      puts "   Cover state: #{book.cover_state}"
       puts '-------------------'
     end
   end
