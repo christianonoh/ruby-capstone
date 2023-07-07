@@ -1,6 +1,7 @@
 require 'json'
 require './managers/utils'
 require_relative 'json_files'
+require_relative 'data_parser'
 
 require './models/music_album'
 require './models/genre'
@@ -8,26 +9,32 @@ require './models/author'
 require './models/label'
 
 class MusicAlbumManager
+  include DataParser
+
   def initialize
     @music_albums = []
     @genres = []
     @authors = []
     @labels = []
     @utils = Utils.new
+    read_music_albums_from_json
+    read_genres_from_json
   end
 
   def list_all_music_albums
+    read_music_albums_from_json
     @music_albums.each_with_index do |music_album, index|
-      puts "#{index + 1}. Music Album #{index + 1}:"
+      puts "#{index + 1}. Music Album #{index + 1} (ID: #{music_album.id}):"
       puts "  Genre: #{music_album.genre.name}"
       puts "  Author: #{music_album.author.first_name} #{music_album.author.last_name}"
       puts "  Label: #{music_album.label.title}"
       puts "  On Spotify: #{music_album.on_spotify}"
-      puts '------------'
+      puts '-------------------'
     end
   end
 
   def list_all_genres
+    read_genres_from_json
     @genres.each_with_index do |genre, index|
       puts "#{index + 1}. #{genre.name}"
     end
@@ -69,5 +76,29 @@ class MusicAlbumManager
     JsonHandler.write_to_json(@labels, Label)
     JsonHandler.write_to_json(@music_albums, MusicAlbum)
     puts 'Saved to JSON'
+  end
+
+  # reading from album music json
+  def read_music_albums_from_json
+    data = JsonHandler.read_from_json('./database/MusicAlbums.json')
+    @music_albums = if data.is_a?(Array)
+                      parse_music_albums(data)
+                    else
+                      []
+                    end
+  end
+
+  # reading from json genres
+  def read_genres_from_json
+    data = JsonHandler.read_from_json('./database/genres.json')
+    @genres = if data.is_a?(Array)
+                data.map do |item|
+                  genre = Genre.new(item[:name])
+                  genre.instance_variable_set(:@id, item[:id])
+                  genre
+                end
+              else
+                []
+              end
   end
 end

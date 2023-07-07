@@ -30,7 +30,7 @@ class App
 
   def list_all_labels
     @book_manager.list_all_labels
-    puts 'Listing all labels'
+    puts 'Listing all Title from labels'
   end
 
   def list_all_authors
@@ -54,7 +54,6 @@ class App
   end
 
   def add_genre
-    # @genre_manager.add_genre
     puts 'Adding a genre'
   end
 

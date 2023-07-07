@@ -12,5 +12,19 @@
     "color": {
       "color": "green"
     }
+  },
+  {
+    "id": 98599,
+    "title": "the dark side of the album",
+    "color": {
+      "color": null
+    }
+  },
+  {
+    "id": 506151,
+    "title": "The last of us",
+    "color": {
+      "color": null
+    }
   }
 ]
