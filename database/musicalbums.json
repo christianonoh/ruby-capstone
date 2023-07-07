@@ -40,5 +40,68 @@
     },
     "publish_date": "1973-02-21",
     "on_spotify": false
+  },
+  {
+    "id": 1357,
+    "genre": {
+      "id": 8966,
+      "name": "pop"
+    },
+    "author": {
+      "id": 805,
+      "first_name": "Michael",
+      "last_name": "Jackson"
+    },
+    "label": {
+      "id": 432245,
+      "title": "thriller",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "2020-02-13",
+    "on_spotify": true
+  },
+  {
+    "id": 9964,
+    "genre": {
+      "id": 2716,
+      "name": "rock"
+    },
+    "author": {
+      "id": 914,
+      "first_name": "pink",
+      "last_name": "floyd"
+    },
+    "label": {
+      "id": 98599,
+      "title": "the dark side of the album",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "1973-02-21",
+    "on_spotify": false
+  },
+  {
+    "id": 4931,
+    "genre": {
+      "id": 5328,
+      "name": "afrobeats"
+    },
+    "author": {
+      "id": 668,
+      "first_name": "davido",
+      "last_name": "adeleke"
+    },
+    "label": {
+      "id": 28075,
+      "title": "timeless",
+      "color": {
+        "color": null
+      }
+    },
+    "publish_date": "2023-06-14",
+    "on_spotify": true
   }
 ]
